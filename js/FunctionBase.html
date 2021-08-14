@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+//获取当前日期
+function getCurrentTime(){
+		 var data=new Date()
+		  time=data.getFullYear()+""+nTimeAddzero(data.getMonth()+1)+""+nTimeAddzero(data.getDate())
+		  return time
+		  function nTimeAddzero(time){
+		  	if(time<10){
+		  		time="0"+time
+		  				return time
+		  	}else{
+		  				return time
+		  			}
+		  }
+	}
+//获取某元素内含有某标签的集合
+function getByClass(oParent,sClass){
+   var aEle=oParent.getElementsByTagName("*");
+   a=[];
+   
+   for(var i=0;i<aEle.length;i++){
+	   if(aEle[i].className==sClass){
+		   a.push(aEle[i]);
+	   }
+   }
+   return a;
+}
+//渐变运动
+function starMove(x){
+				 var oDiv=document.getElementById("div1");
+				 clearInterval(timer);
+				 timer=setInterval(function(){
+					 if(alpha==x)
+					 {
+						clearInterval(timer); 
+					 }
+					 else
+					 {
+						 if(alpha<x){
+							 speed=10;
+						 }
+						 else{
+							 speed=-10;
+						 }
+						 alpha+=speed
+						 oDiv.style.filter="filter: alpha(opacity:"+alpha+")";
+						 oDiv.style.opacity=alpha/100;
+					 }
+				  },30)
+			 }
+			 
+//获取鼠标x，y绝对坐标
+			function getPos(ev)
+						 {
+							var scrTop=document.documentElement.scrollTop||document.body.scrollTop
+							var scrLeft=document.documentElement.scrollLeft||document.body.scrollLeft
+							
+							return {x:ev.clientX+scrLeft ,y:ev.clientY+scrTop}
+						 }
+						 
+			function dragHTMLevent(obj){
+						 var oDiv=document.getElementById(obj)
+						 
+						 oDiv.onmousedown=function(ev) {
+						 	var oEvent=ev||event;
+						 	pos=getPos(oEvent);
+						 	x=pos.x-oDiv.offsetLeft;
+						 	y=pos.y-oDiv.offsetTop;
+						 	
+						 	document.onmousemove=function(ev){
+						 		var oEvent=ev||event
+						 		pos=getPos(oEvent)
+						 		//console.log(oDiv.offsetLeft)
+						 		divX=pos.x-x //div实际位置
+						 		divY=pos.y-y //div实际位置
+						 		
+						 		//防止div跳出画面+吸附
+						 		if(divX<80){
+						 			divX=0
+						 		}
+						 		if(divY<80){
+						 			divY=0
+						 		}
+						 		if(divY+oDiv.offsetHeight>document.documentElement.clientHeight-80){
+						 			divY=document.documentElement.clientHeight-oDiv.offsetHeight
+						 		}
+						 		if(divX+oDiv.offsetWidth>document.documentElement.clientWidth-80){
+						 			divX=document.documentElement.clientWidth-oDiv.offsetWidth
+						 		}
+						 		//移动div
+						 		oDiv.style.left=divX+"px"
+						 		oDiv.style.top=divY+"px"
+						 		
+						 		
+						 	}
+						 	
+						 	document.onmouseup= function(){
+						 		
+						 		document.onmousemove=null;
+						 		document.onmouseup=null 
+						 	}
+						 	
+						 	return false //解决火狐移动空div会出现bug,同时也是解决拖拽会选择文字的方法
+						 }
+					}
+						 
+</script>
+</head>
+<body>
+<input id="btn1"type=button value=按钮>
+</body>
+</html>

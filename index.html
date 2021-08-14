@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link href="css/mycss.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="js/dwls_dragHTMLelement.js"></script>
+		<script type="text/javascript" src="js/dwls_core.js"></script>
+		<script type="text/javascript" src="js/dwls_documentLink.js"></script>
+		<script type="text/javascript">
+			window.onload=function(){
+				dragHTMLevent("div2_1")
+				fn_setLink()
+			}
+			
+		</script>
+	</head>
+	<body>
+		<audio id="mp3Btn" controls="controls" autoplay="autoplay" hidden="hidden">
+		<source src="audio/Summer.mp3" type="audio/mpeg"/>
+		</audio>
+		
+		<div id="head">
+			<span id="head_logo">达瓦里氏第一共和国</span>
+			<input id="head_search_blank" class="head_serach" type="text" autocomplete="on"/>
+			<input id="head_search_btn" class="head_serach" type="button" value="搜索" />
+		</div>
+		<div class="body">
+			<div class="body_left">
+				<ul id="link_list">
+				    <li> <a class="link" id="a" href="javascript:;">html</a> </li>
+					 <li> <a class="link" id="a" href="javascript:;">css</a> </li>
+				</ul>
+			</div>
+			<div class="body_mid">
+				<p></p>
+			</div>
+			<div class="body_right">
+				<svg>dddd</svg>
+			</div>
+		</div>
+		
+		<div id="div2_1" class="g-backdrop-filter"></div>
+	</body>
+</html>
